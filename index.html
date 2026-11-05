@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0F172A">
+<title>طابور الحلاق — سجّل دورك من هاتفك</title>
+<meta name="description" content="تطبيق أندرويد لتسجيل دورك عند الحلاق ومتابعة عدد من قبلك ووقت الانتظار المتوقع مباشرة، بالعربية.">
+<meta property="og:title" content="طابور الحلاق">
+<meta property="og:description" content="سجّل دورك عند الحلاق وتابعه من هاتفك.">
+<meta property="og:image" content="icon.png">
+<link rel="icon" href="icon.png" type="image/png">
+
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;overflow-x:hidden;background:#0F172A;color:#F1F5F9;font-family:'Tajawal',sans-serif;line-height:1.7}
+.w{max-width:1120px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 28px;border-radius:14px;background:#0F766E;color:#fff;font-weight:800;font-size:18px;text-decoration:none;border:1px solid #14B8A6}
+.btn:hover{background:#0D9488}
+.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #5EEAD4;outline-offset:3px}
+.card{background:#1E293B;border:1px solid #334155;border-radius:20px;padding:28px}
+.ic{width:46px;height:46px;border-radius:12px;background:#0F172A;border:1px solid #334155;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+svg.s{width:24px;height:24px;fill:none;stroke:#2DD4BF;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.hero{display:grid;gap:56px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));align-items:center}
+h2{font-size:clamp(28px,4vw,40px);font-weight:800;margin:0 0 12px;line-height:1.3}
+h3{font-size:20px;font-weight:700;margin:0 0 6px}
+p{margin:0}
+.m{color:#94A3B8}
+.dot{width:8px;height:8px;border-radius:50%;background:#22C55E;animation:p 2s infinite}
+@keyframes p{50%{opacity:.4}}
+details{background:#1E293B;border:1px solid #334155;border-radius:14px;padding:18px 22px;margin-bottom:12px}
+summary{cursor:pointer;font-weight:700;font-size:18px}
+details p{margin-top:10px}
+@keyframes rv{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.in{animation:rv .9s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.32s}.d4{animation-delay:.46s}
+@keyframes ul{to{background-size:100% 3px}}
+.hl{background:linear-gradient(#14B8A6,#14B8A6) no-repeat right bottom/0 3px;padding-bottom:4px;animation:ul 1.1s .9s ease-out forwards}
+@keyframes fl{50%{transform:translateY(-14px) rotate(-1deg)}}
+.ph{position:relative;z-index:1;animation:fl 6s ease-in-out infinite}
+@keyframes rg{0%{transform:scale(.8);opacity:.45}100%{transform:scale(1.8);opacity:0}}
+.rg{position:absolute;top:50%;left:50%;width:300px;height:300px;margin:-150px 0 0 -150px;border:1px solid #14B8A6;border-radius:50%;opacity:0;animation:rg 4s ease-out infinite}
+@keyframes pop{0%,8%{opacity:0;transform:scale(.8) translateY(12px)}16%,70%{opacity:1;transform:none}80%,100%{opacity:0;transform:translateY(-8px)}}
+.chip{position:absolute;z-index:2;top:-6px;inset-inline-end:4px;display:flex;align-items:center;gap:8px;background:#1E293B;border:1px solid #14B8A6;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:700;animation:pop 7s ease-in-out infinite}
+.q span{position:absolute;inset:0;opacity:0;animation:qc 12s infinite}
+.q span:first-child{opacity:1}
+.q span:nth-child(2){animation-delay:3s}.q span:nth-child(3){animation-delay:6s}.q span:nth-child(4){animation-delay:9s}
+@keyframes qc{0%{opacity:0;transform:translateY(12px)}4%,22%{opacity:1;transform:none}26%,100%{opacity:0;transform:translateY(-12px)}}
+.btn{position:relative;overflow:hidden;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%);transform:translateX(-130%);animation:sh 4.5s ease-in-out infinite}
+@keyframes sh{55%,100%{transform:translateX(130%)}}
+.card{transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-6px);border-color:#14B8A6}
+.ic{transition:transform .3s}
+.card:hover .ic{transform:rotate(-8deg) scale(1.12)}
+.b1,.b2{transform-origin:28px 24px}
+.b1{animation:c1 3s ease-in-out infinite}.b2{animation:c2 3s ease-in-out infinite}
+@keyframes c1{0%,55%,100%{transform:rotate(0)}70%{transform:rotate(-14deg)}85%{transform:rotate(0)}}
+@keyframes c2{0%,55%,100%{transform:rotate(0)}70%{transform:rotate(14deg)}85%{transform:rotate(0)}}
+@supports(animation-timeline:view()){
+.card,details,h2{animation:rv linear backwards;animation-timeline:view();animation-range:entry 0% entry 40%}
+.grid>:nth-child(3n+2){animation-range:entry 8% entry 48%}
+.grid>:nth-child(3n){animation-range:entry 16% entry 56%}
+.bar{position:fixed;z-index:50;top:0;inset-inline:0;height:3px;background:#14B8A6;transform:scaleX(0);transform-origin:right;animation:pg linear both;animation-timeline:scroll()}
+}
+@keyframes pg{to{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+</head>
+<body>
+
+
+<div style="width:100%">
+<div class="bar" aria-hidden="true"></div>
+
+<header class="w" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:20px;padding-bottom:20px">
+<a href="#top" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#F1F5F9;font-weight:800;font-size:20px">
+<img src="icon.png" alt="" style="width:44px;height:44px;border-radius:12px">
+طابور الحلاق
+</a>
+<a class="btn" href="#download" style="min-height:44px;padding:0 20px;font-size:16px">تحميل التطبيق</a>
+</header>
+
+<main id="top">
+
+<section class="w" style="padding-top:48px;padding-bottom:88px;overflow:hidden">
+<div class="hero">
+<div>
+<p class="in d1" style="display:inline-block;color:#2DD4BF;font-weight:700;border:1px solid #334155;border-radius:999px;padding:4px 16px;margin-bottom:20px">تطبيق أندرويد للزبائن</p>
+<h1 class="in d2" style="font-size:clamp(36px,5.5vw,60px);font-weight:800;line-height:1.3;margin:0 0 20px">لا تنتظر واقفاً في الصالون. سجّل دورك <span class="hl">وتابعه من هاتفك.</span></h1>
+<p class="m in d3" style="font-size:20px;max-width:540px;margin-bottom:32px">أضف نفسك إلى طابور الحلاق في ثوانٍ، وشاهد عدد من قبلك ووقت الانتظار المتوقع يتحدّثان مباشرة، دون أن تسأل أحداً.</p>
+<div class="in d4" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+<a class="btn" href="barber-queue-1.0.apk" download>
+<svg class="s" viewBox="0 0 24 24" aria-hidden="true" style="stroke:#fff"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+حمّل التطبيق لأندرويد
+</a>
+<a href="#how" style="color:#F1F5F9;font-weight:700;padding:12px 16px">كيف يعمل؟</a>
+</div>
+<p class="m" style="margin-top:20px;font-size:15px">أندرويد 9 أو أحدث · الإصدار 1.0 · 5.9 ميغابايت · يتطلب اتصالاً بالإنترنت</p>
+</div>
+
+<div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:14px">
+<div class="rg" aria-hidden="true"></div><div class="rg" aria-hidden="true" style="animation-delay:2s"></div>
+<div class="chip" aria-hidden="true"><svg class="s" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M6 16v-5a6 6 0 0112 0v5l1.5 2h-15zM10 21h4"/></svg>وصل إشعار إلى الحلاق</div>
+<div class="ph" aria-hidden="true" style="width:290px;box-sizing:border-box;background:#0F172A;border:8px solid #1E293B;border-radius:42px;padding:28px 18px 22px;box-shadow:0 24px 60px rgba(0,0,0,.5);outline:1px solid #334155">
+<div style="text-align:center;margin-bottom:18px">
+<img src="icon.png" alt="" style="width:56px;height:56px;border-radius:14px">
+<div style="font-weight:800;font-size:20px;margin-top:8px">طابور الحلاق</div>
+<div class="m" style="font-size:13px">سجّل نفسك وانتظر دورك</div>
+</div>
+<div style="background:#1E293B;border:1px solid #334155;border-radius:18px;padding:20px;text-align:center;margin-bottom:16px">
+<div class="m" style="font-size:13px">عدد الأشخاص قبلك</div>
+<div class="q" style="height:70px;position:relative;font-size:64px;font-weight:800;color:#14B8A6;line-height:70px"><span>3</span><span>2</span><span>1</span><span>0</span></div>
+<div class="m" style="font-size:12px">يتم التحديث تلقائياً</div>
+<div class="q" style="height:24px;position:relative;color:#14B8A6;font-weight:700;font-size:14px;margin-top:8px;line-height:24px"><span>حوالي 2 ساعة</span><span>حوالي ساعة و 20 دقيقة</span><span>حوالي 40 دقيقة</span><span>دورك الآن أو قريب جداً</span></div>
+</div>
+<div style="background:#0F766E;color:#fff;font-weight:800;text-align:center;border-radius:12px;padding:13px 0">أضف نفسك للطابور</div>
+<div class="m" style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;margin-top:18px"><span class="dot"></span>متصل بالطابور</div>
+</div>
+<p class="m" style="font-size:14px">مثال من واجهة التطبيق</p>
+</div>
+</div>
+</section>
+
+<section id="how" style="background:#0B1222;border-top:1px solid #1E293B;border-bottom:1px solid #1E293B;padding:80px 0">
+<div class="w">
+<h2>ثلاث خطوات فقط</h2>
+<p class="m" style="font-size:18px;margin-bottom:36px">من تحميل التطبيق إلى رقم دورك.</p>
+<div class="grid">
+<div class="card"><div style="font-size:44px;font-weight:800;color:#14B8A6;line-height:1">1</div><h3 style="margin-top:12px">حمّل التطبيق وافتحه</h3><p class="m">يظهر لك فوراً عدد الأشخاص قبلك ووقت الانتظار.</p></div>
+<div class="card"><div style="font-size:44px;font-weight:800;color:#14B8A6;line-height:1">2</div><h3 style="margin-top:12px">أضف نفسك للطابور</h3><p class="m">الاسم واللقب ورقم الهاتف، ثم اضغط تأكيد.</p></div>
+<div class="card"><div style="font-size:44px;font-weight:800;color:#14B8A6;line-height:1">3</div><h3 style="margin-top:12px">انتظر دورك براحة</h3><p class="m">احتفظ برقمك، وسيتحدّث الانتظار المتوقع تلقائياً.</p></div>
+</div>
+</div>
+</section>
+
+<section class="w" style="padding-top:88px;padding-bottom:88px">
+<h2>كل ما تحتاجه، بلا تعقيد</h2>
+<p class="m" style="font-size:18px;margin-bottom:36px">تطبيق صغير يؤدي مهمة واحدة جيداً.</p>
+<div class="grid">
+<div class="card"><div class="ic"><svg class="s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 5a3.5 3.5 0 010 7M18 14c2.2.6 3.5 2.4 3.5 5"/></svg></div><h3>عدد من قبلك، مباشرة</h3><p class="m">يتحدّث الرقم تلقائياً دون إعادة تحميل.</p></div>
+<div class="card"><div class="ic"><svg class="s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>وقت الانتظار المتوقع</h3><p class="m">يُحسب لك من عدد من قبلك، فتعرف متى تصل.</p></div>
+<div class="card"><div class="ic"><svg class="s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="8" r="4"/><path d="M3 20c0-3.5 3-6 7-6M18 8v6M15 11h6"/></svg></div><h3>تسجيل في ثوانٍ</h3><p class="m">ثلاثة حقول فقط: الاسم واللقب والهاتف.</p></div>
+<div class="card"><div class="ic"><svg class="s" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16v-5a6 6 0 0112 0v5l1.5 2h-15zM10 21h4"/></svg></div><h3>الحلاق يعرف فور تسجيلك</h3><p class="m">يصل إشعار إلى هاتف الحلاق عند انضمامك.</p></div>
+<div class="card"><div class="ic"><svg class="s" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H5v16h4M16 8l4 4-4 4M20 12H9"/></svg></div><h3>غادر متى شئت</h3><p class="m">زر «مغادرة الطابور» يحرّر مكانك بلمسة.</p></div>
+<div class="card"><div class="ic"><svg class="s" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h16"/></svg></div><h3>عربي من اليمين لليسار</h3><p class="m">واجهة مصمّمة بالعربية من الأساس.</p></div>
+</div>
+</section>
+
+<section id="download" style="background:#0B1222;border-top:1px solid #1E293B;border-bottom:1px solid #1E293B;padding:80px 0">
+<div class="w">
+<div class="hero" style="gap:40px;align-items:start">
+<div>
+<h2>كيف تثبّت التطبيق؟</h2>
+<p class="m" style="font-size:18px;margin-bottom:28px">أربع خطوات على هاتفك.</p>
+<a class="btn" href="barber-queue-1.0.apk" download>
+<svg class="s" viewBox="0 0 24 24" aria-hidden="true" style="stroke:#fff"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+حمّل التطبيق لأندرويد
+</a>
+<p class="m" style="margin-top:16px;font-size:15px">الإصدار 1.0 · أندرويد 9 أو أحدث · حجم الملف 5.9 ميغابايت</p>
+</div>
+<ol style="margin:0;padding:0;list-style:none;display:grid;gap:14px">
+<li class="card" style="padding:18px 22px">١. اضغط زر التحميل وانتظر انتهاء التنزيل.</li>
+<li class="card" style="padding:18px 22px">٢. افتح الملف من إشعارات التنزيل أو من مجلد التنزيلات.</li>
+<li class="card" style="padding:18px 22px">٣. إن طلب أندرويد ذلك، اسمح بالتثبيت من هذا المصدر مرة واحدة.</li>
+<li class="card" style="padding:18px 22px">٤. افتح «طابور الحلاق» وأضف نفسك للطابور.</li>
+</ol>
+</div>
+</div>
+</section>
+
+<section class="w" style="padding-top:88px;padding-bottom:88px;max-width:760px">
+<h2 style="margin-bottom:28px">أسئلة شائعة</h2>
+<details><summary>هل يعمل التطبيق دون إنترنت؟</summary><p class="m">لا، يحتاج اتصالاً بالإنترنت ليعرض الطابور مباشرة.</p></details>
+<details><summary>أي إصدار أندرويد أحتاج؟</summary><p class="m">أندرويد 9 أو أحدث.</p></details>
+<details><summary>ما البيانات التي يطلبها التطبيق؟</summary><p class="m">الاسم واللقب ورقم الهاتف فقط، لتسجيلك في الطابور.</p></details>
+<details><summary>هل أستطيع الانسحاب بعد التسجيل؟</summary><p class="m">نعم، من زر «مغادرة الطابور» داخل التطبيق.</p></details>
+</section>
+
+<section class="w" style="padding-bottom:88px">
+<div style="background:#0F766E;border-radius:28px;padding:56px 32px;text-align:center">
+<svg viewBox="0 0 48 48" width="56" height="56" aria-hidden="true" style="fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;margin-bottom:8px"><g class="b1"><circle cx="12" cy="36" r="5"/><path d="M16 32L40 8"/></g><g class="b2"><circle cx="12" cy="12" r="5"/><path d="M16 16L40 40"/></g></svg>
+<h2 style="color:#fff">دورك يبدأ من هاتفك</h2>
+<p style="color:#E6FFFA;font-size:18px;margin-bottom:28px">حمّل طابور الحلاق، وسجّل دورك قبل أن تصل.</p>
+<a class="btn" href="barber-queue-1.0.apk" download style="background:#fff;color:#0F172A;border-color:#fff">
+<svg class="s" viewBox="0 0 24 24" aria-hidden="true" style="stroke:#0F172A"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+حمّل التطبيق لأندرويد
+</a>
+</div>
+</section>
+
+</main>
+
+<footer style="border-top:1px solid #1E293B;padding:28px 0">
+<div class="w m" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:15px">
+<span>طابور الحلاق</span>
+<span>الإصدار 1.0 · لأجهزة أندرويد</span>
+</div>
+</footer>
+
+</div>
+
+</body>
+</html>
